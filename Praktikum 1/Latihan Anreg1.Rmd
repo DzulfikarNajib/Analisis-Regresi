@@ -1,0 +1,42 @@
+---
+title: "Latihan Anreg 1"
+author: "Dzulfikar Najib"
+date: "2026-01-27"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r data}
+pages <- c(500, 700, 800, 600, 400, 500, 600, 800)
+price <- c(84, 75, 99, 72, 69, 81, 63, 93)
+
+data <- data.frame(Pages = pages, Price = price)
+data
+```
+```{r scatterplot}
+plot(pages, price,
+     xlab = "Number of Pages",
+     ylab = "Book Price ($)",
+     main = "Scatterplot Pages vs Price")
+```
+```{r correlation}
+correlation <- cor(pages, price)
+correlation
+```
+```{r correlation_test}
+test <- cor.test(pages, price)
+test
+```
+
+```{r conclusion}
+if (test$p.value < 0.05) {
+  cat("Kesimpulan: Korelasi signifikan pada taraf 5%.")
+} else {
+  cat("Kesimpulan: Korelasi tidak signifikan pada taraf 5%.")
+}
+```
+## Interpretasi
+
+Berdasarkan scatterplot, terlihat hubungan positif sedang antara jumlah halaman buku dan harga jual buku (r = 0.614). Namun, berdasarkan uji signifikansi dengan taraf 5%, korelasi tersebut tidak signifikan secara statistik (p-value = 0.105). Dengan demikian, belum cukup bukti untuk menyatakan bahwa jumlah halaman buku berhubungan secara signifikan dengan harga jualnya.
+
